@@ -1,0 +1,396 @@
+body.login>div.language-switcher {
+  display: none;
+}
+
+:root{
+  --primary-color-login: #01104f;
+}
+
+body {
+  background-color: white;
+  color: #1A171B;
+}
+
+.md-space {
+  height: 100px;
+  width: 100%;
+}
+
+.sm-space {
+  height: 50px;
+  width: 100%;
+}
+
+a,
+.login #backtoblog a,
+.login #nav a {
+  color: #1A171B;
+}
+
+a:active,
+a:hover {
+  color: var(--primary-color-login);
+}
+
+.login form {
+  border: 1px solid #1A171B;
+  border-radius: 20px 20px;
+}
+
+.login h1 a {
+  background-image: url('/wp-content/themes/agence-bb/login/img/logo_bb.png');
+  background-size: 150px;
+  height: 170px;
+  width: auto;
+}
+
+
+.login label {
+  font-size: 12px;
+  color: #555555;
+}
+
+.login input[type="text"] {
+  background-color: #ffffff;
+  border-color: #dddddd;
+  -webkit-border-radius: 4px;
+}
+
+.login input[type="password"] {
+  background-color: #ffffff;
+  border-color: #dddddd;
+  -webkit-border-radius: 4px;
+}
+
+.login .button-primary {
+  width: 120px;
+  float: right;
+  /* background-color:black !important; */
+  color: #ffffff;
+  -webkit-border-radius: 4px;
+  border: 1px solid black;
+}
+
+.login .button-primary:hover {
+  background-color: var(--primary-color-login) !important;
+  color: #fff;
+
+}
+
+.login .button-primary:active {
+  background-color: var(--primary-color-login) !important;
+  color: #fff;
+
+}
+
+
+.login h1 a:focus {
+  color: transparent;
+}
+
+a:focus {
+  color: transparent;
+  box-shadow: none;
+}
+
+
+body.login .login-custom-section,
+div#login {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  position: relative;
+}
+
+
+body.login {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #1F2022;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  align-content: center;
+  height: 100vh;
+  overflow: visible;
+}
+
+
+/* @media screen and (max-width: 1600px) {
+  body {
+    transform: scale(0.8) !important;
+  }
+} */
+
+body.login h1,
+h2,
+h3,
+h4,
+span,
+p {
+  color: white;
+  font-family: 'Roboto Flex';
+}
+
+p#backtoblog a,
+p#nav a {
+  /* color: white !important; */
+  color: black !important;
+}
+
+body.login form#loginform {
+  width: 350px;
+  background: no-repeat;
+  border-color: transparent;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  margin: 20px 0;
+}
+
+.login label {
+  color: white;
+}
+
+body.login #login {
+  padding: 0;
+  margin: 0;
+  background: white;
+}
+
+
+body.login h1 {
+  width: 100%;
+}
+
+
+body.login h1 a {
+  margin: 0;
+}
+
+body.login p#contact {
+  width: 100%;
+}
+
+body.login p#contact a {
+  color: var(--primary-color-login);
+}
+
+body.login .section-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5%;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 2%;
+}
+
+body.login .section-logo a {
+  display: flex;
+  flex-direction: column;
+}
+
+body.login .section-logo img {
+  height: 60px;
+}
+
+body.login .section-logo a p {
+  color: white;
+}
+
+body.login input.button {
+  color: black;
+  border-color: black;
+  background: #D2DC65;
+}
+
+body.login input.button:hover {
+  background: white;
+  color: black;
+  border-color: black;
+}
+
+body.login input[type=submit] {
+  color: white !important;
+  border-color: var(--primary-color-login) !important;
+  background: var(--primary-color-login) !important;
+  transition: all .3s ease-in-out;
+}
+
+body.login input[type=submit]:hover {
+  color: var(--primary-color-login) !important;
+  border-color: var(--primary-color-login) !important;
+  background: white !important;
+}
+
+body.login #language-switcher-locales {
+  /* color: white; */
+  color: black;
+  border-color: white;
+  background: #fff0 url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 55%;
+}
+
+
+body.login div#login label {
+  color: black;
+}
+
+body.login #login,
+h1,
+h2,
+h3,
+h4,
+span,
+p {
+  color: black;
+}
+
+body.login #nav {
+  margin: 0;
+}
+
+body.login p#backtoblog {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.divContact {
+  padding: 0 10%;
+}
+
+body.login section.login-custom-section div.login-custom-div-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+
+body.login section.login-custom-section div.crossSelling {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+body.login section.login-custom-section div.crossSelling .imageContainer{
+  width: 60%;
+  height: 60%;
+  position: relative;
+}
+
+body.login section.login-custom-section div.crossSelling .imageContainer img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body.login section.login-custom-section div.crossSelling .imageContainer .shadow-image{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #1f202244;
+  top: 0;
+}
+
+body.login section.login-custom-section div.crossSelling button {
+  font-style: normal;
+  word-wrap: break-word;
+  font-family: 'Roboto Flex', sans-serif !important;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 260px;
+  text-align: center;
+  max-width: 100%;
+  -webkit-transition: all 0.2s linear;
+  -webkit-border-radius: 4px;
+  display: inline-block;
+  line-height: 18px;
+  padding: 12px 8px;
+  text-decoration: none;
+  text-shadow: none;
+  background: #d2dc65;
+  color: #2b2c2d;
+  font-weight: 700;
+  font-size: 18px;
+  border: 1px solid #d2dc65;
+  transition: all .3s ease-in-out;
+}
+
+body.login section.login-custom-section div.crossSelling button:hover {
+  color: #d2dc65;
+  background: #2b2c2d;
+  border-color: #2b2c2d;
+}
+
+body.login section.login-custom-section div.crossSelling button:hover a{
+  color: #d2dc65;
+}
+
+body.login section.login-custom-section div.crossSelling button a {
+  display: contents;
+}
+
+
+
+body.login section.login-custom-section div.crossSelling .h2-crossSelling {
+  font-size: 30px;
+  color: white;
+  font-family: 'Roboto Flex';
+  width: 100%;
+}
+
+body.login section.login-custom-section div.crossSelling .h3-crossSelling {
+  font-size: 26px;
+  color: white;
+  font-family: 'Roboto Flex';
+  width: 100%;
+}
+
+body.login section.login-custom-section .section-poles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2%;
+  position: absolute;
+  bottom: 5%;
+}
+
+body.login section.login-custom-section .section-poles a {
+  height: 100%;
+  width: 22%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.login section.login-custom-section .section-poles h3.h3-poles {
+  font-size: 24px;
+  color: white;
+  font-family: 'Roboto Flex';
+  width: 100%;
+  text-align: center;
+}
+
+body.login section.login-custom-section .section-poles a img {
+  height: 50px;
+  width: auto;
+}
