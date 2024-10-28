@@ -2,10 +2,6 @@ body.login>div.language-switcher {
   display: none;
 }
 
-:root{
-  --primary-color-login: #01104f;
-}
-
 body {
   background-color: white;
   color: #1A171B;

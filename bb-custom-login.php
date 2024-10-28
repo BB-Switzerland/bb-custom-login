@@ -2,16 +2,14 @@
 /*
 Plugin Name: BB Custom Login
 Description: Un plugin pour personnaliser la page de connexion de WordPress
-Version: 1.0
+Version: 1
 Author: Agence BB® Switzerland
 Author URI: https://www.agence-bb.ch
 */
 
-
 // Texte sous le formulaire de connexion
 function add_content_to_login_form()
 {
-    // Ajouter du contenu après le paragraphe #backtoblog dans la div#login
     echo '<script>
         document.addEventListener("DOMContentLoaded", function() {
             var backToBlog = document.getElementById("backtoblog");
@@ -27,7 +25,6 @@ add_action('login_form', 'add_content_to_login_form');
 // Création de la section de Cross-selling Agence
 function add_header_login()
 {
-
     function cross_selling_login_shortcode()
     {
         ob_start();
@@ -40,16 +37,9 @@ function add_header_login()
             <h2 class="h2-crossSelling">
                 Boostez votre visibilité en ligne avec nos prestations de référencement SEO/SEA !
             </h2>
-            <!-- <div class="sm-space"></div>
-            <div class="imageContainer">
-                <img src="<?php echo get_theme_file_uri('/login/img/search.jpg'); ?>" alt="">
-                <div class="shadow-image"></div>
-            </div> -->
             <div class="sm-space"></div>
             <button><a href="https://agence-bb.ch/services/" target="_blank">Voir nos prestations</a></button>
-            <!-- <h3 class="h3-crossSelling">Déouvrez nos prestions de référencement payant et gratuit SEO/SEA !</h3> -->
         </div>
-
 
         <div class="md-space"></div>
 
@@ -57,37 +47,18 @@ function add_header_login()
             <h3 class="h3-poles">Découvrez également les autres pôles de BB<sup>®</sup> Switzerland.</h3>
             <div class="sm-space"></div>
             <a href="https://agence-bb.ch/services" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/strategie.svg'); ?>">
+                <img decoding="async" src="<?php echo plugin_dir_url(__FILE__) . 'login/img/strategie.svg'; ?>">
             </a>
             <a href="https://agence-bb.ch/services" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/digital-web.svg'); ?>">
+                <img decoding="async" src="<?php echo plugin_dir_url(__FILE__) . 'login/img/digital-web.svg'; ?>">
             </a>
             <a href="https://agence-bb.ch/services" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/graphisme-design.svg'); ?>">
+                <img decoding="async" src="<?php echo plugin_dir_url(__FILE__) . 'login/img/graphisme-design.svg'; ?>">
             </a>
             <a href="https://agence-bb.ch/services" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/photos-videos.svg'); ?>">
+                <img decoding="async" src="<?php echo plugin_dir_url(__FILE__) . 'login/img/photos-videos.svg'; ?>">
             </a>
         </div>
-
-        <!-- <div class="section-logo">
-            <a href="https://agence-bb.ch/bb-studio" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/BBS_studio_logo.webp'); ?>">
-                <p>Les studios photos et vidéos.</p>
-            </a>
-            <a href="https://agence-bb.ch/blog" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/BBS_blog_logo.webp'); ?>">
-                <p>Le blog des experts.</p>
-            </a>
-            <a href="https://agence-bb.ch/bb-lab" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/BBS_lab_logo.webp'); ?>">
-                <p>Le laboratoire digital.</p>
-            </a>
-            <a href="https://agence-bb.ch/bb-life" target="_blank">
-                <img decoding="async" src="<?php echo get_theme_file_uri('/login/img/BBS_life_logo.webp'); ?>">
-                <p>L'actualité de l'agence.</p>
-            </a>
-        </div> -->
 
         <?php
         $content = ob_get_clean();
@@ -105,24 +76,32 @@ function add_header_login()
 
 add_header_login();
 
-
-
-
 // CSS personnalisé pour l'élément login h1 a
 function custom_login_css()
 {
+    $client_logo = get_option('bb_custom_login_logo');
+    if(!$client_logo){
+        $client_logo = plugin_dir_url(__FILE__) . 'login/img/default-client-logo.svg';
+    }
+
+    $primary_color = get_option('bb_custom_login_primary_color', '#01104f');
+
     echo '<style>
-        .login h1.logo-agence a.lien-agence{
-            background-image: url(' . get_theme_file_uri('/login/img/logo_bb.png') . ') !important;
-            background-size: 150px !important;
-            height: 170px !important;
-            width: 30% !important
+        :root {
+            --primary-color-login: ' . esc_attr($primary_color) . ';
         }
         .login h1.logo-client a{
-            background-image: url(' . get_theme_file_uri('/login/img/AGEAS_blue_2.svg') . ') !important;
-            background-size: 30% !important;
+            background-image: url(' . esc_url($client_logo) . ') !important;
+            background-size: contain !important;
             height: 170px !important;
             width: auto !important;
+            display: block;
+        }
+        .login h1.logo-agence a.lien-agence{
+            background-image: url(' . plugin_dir_url(__FILE__) . 'login/img/logo_bb.png) !important;
+            background-size: 150px !important;
+            height: 170px !important;
+            width: 30% !important;
         }
         .login h1.logo-agence{
             display: flex;
@@ -132,14 +111,109 @@ function custom_login_css()
 }
 add_action('login_enqueue_scripts', 'custom_login_css');
 
-
-// Lien vers le CSS personnalisé et le JS personalisé + import font Roboto Flex
+// Lien vers le CSS personnalisé et le JS personnalisé + import de la police Roboto Flex
 function my_custom_login()
 {
-    echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
-    echo '<script src="' . get_theme_file_uri('/login/custom-login-script.js') . '" type="text/javascript" async></script>';
-    echo '<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex&display=swap" rel="stylesheet">';
+    echo '<link rel="stylesheet" type="text/css" href="' . plugin_dir_url(__FILE__) . 'login/custom-login-styles.css" />';
+    echo '<script src="' . plugin_dir_url(__FILE__) . 'login/custom-login-script.js" type="text/javascript" async></script>';
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+    echo '<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex&display=swap" rel="stylesheet">';
 }
 add_action('login_head', 'my_custom_login');
+
+// Ajout de la page de paramètres pour choisir le logo du client et la couleur principale
+function bb_custom_login_menu()
+{
+    add_options_page(
+        'BB Custom Login Settings', // Titre de la page
+        'BB Custom Login', // Titre du menu
+        'manage_options', // Capacité requise
+        'bb-custom-login', // Slug du menu
+        'bb_custom_login_settings_page' // Fonction de rappel
+    );
+}
+add_action('admin_menu', 'bb_custom_login_menu');
+
+function bb_custom_login_register_settings()
+{
+    register_setting('bb_custom_login_settings_group', 'bb_custom_login_logo');
+    register_setting('bb_custom_login_settings_group', 'bb_custom_login_primary_color');
+}
+add_action('admin_init', 'bb_custom_login_register_settings');
+
+function bb_custom_login_settings_page()
+{
+    ?>
+    <div class="wrap">
+        <h1>Paramètres de BB Custom Login</h1>
+        <form method="post" action="options.php">
+            <?php settings_fields('bb_custom_login_settings_group'); ?>
+            <?php do_settings_sections('bb_custom_login_settings_group'); ?>
+            <table class="form-table">
+                <!-- Champ pour le logo du client -->
+                <tr valign="top">
+                    <th scope="row">Logo du client</th>
+                    <td>
+                        <input type="text" id="bb_custom_login_logo" name="bb_custom_login_logo" value="<?php echo esc_attr(get_option('bb_custom_login_logo')); ?>" style="width:60%;" />
+                        <input type="button" id="bb_custom_login_logo_button" class="button" value="Téléverser le logo" />
+                        <p class="description">Téléversez ou sélectionnez le logo du client à afficher sur la page de connexion.</p>
+                        <?php if(get_option('bb_custom_login_logo')): ?>
+                            <img src="<?php echo esc_url(get_option('bb_custom_login_logo')); ?>" style="max-width: 200px; display: block; margin-top: 10px;" />
+                        <?php endif; ?>
+                    </td>
+                </tr>
+
+                <!-- Nouveau champ pour la couleur principale -->
+                <tr valign="top">
+                    <th scope="row">Couleur principale</th>
+                    <td>
+                        <input type="text" id="bb_custom_login_primary_color" name="bb_custom_login_primary_color" value="<?php echo esc_attr(get_option('bb_custom_login_primary_color', '#01104f')); ?>" class="my-color-field" data-default-color="#01104f" />
+                        <p class="description">Sélectionnez la couleur principale à utiliser sur la page de connexion.</p>
+                    </td>
+                </tr>
+
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($){
+        // Pour le champ du logo du client
+        var mediaUploader;
+        $('#bb_custom_login_logo_button').click(function(e) {
+            e.preventDefault();
+            if (mediaUploader) {
+                mediaUploader.open();
+                return;
+            }
+            mediaUploader = wp.media({
+                title: 'Choisir le logo',
+                button: {
+                    text: 'Choisir le logo'
+                }, multiple: false });
+            mediaUploader.on('select', function() {
+                var attachment = mediaUploader.state().get('selection').first().toJSON();
+                $('#bb_custom_login_logo').val(attachment.url);
+            });
+            mediaUploader.open();
+        });
+
+        // Pour le champ de sélection de couleur
+        $('.my-color-field').wpColorPicker();
+    });
+    </script>
+    <?php
+}
+
+// Enqueue des scripts de la médiathèque WordPress et du sélecteur de couleur sur la page de paramètres du plugin
+function bb_custom_login_enqueue_media_uploader($hook) {
+    if( $hook != 'settings_page_bb-custom-login' ) {
+        return;
+    }
+    wp_enqueue_media();
+    wp_enqueue_style( 'wp-color-picker' );
+    wp_enqueue_script( 'wp-color-picker' );
+}
+add_action('admin_enqueue_scripts', 'bb_custom_login_enqueue_media_uploader');
