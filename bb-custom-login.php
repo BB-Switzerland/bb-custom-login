@@ -119,6 +119,7 @@ function my_custom_login()
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
     echo '<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex&display=swap" rel="stylesheet">';
+    echo '<script src="https://cdn.tailwindcss.com"></script>';
 }
 add_action('login_head', 'my_custom_login');
 
