@@ -392,8 +392,8 @@ body.login section.login-custom-section .section-poles a img {
 }
 
 @media screen and (max-width: 768px) {
-  .login-custom-section, #login{
-    width: 100%;
+  body.login .login-custom-section, div#login{
+    width: 100% !important;
   }
 
   body.login{
