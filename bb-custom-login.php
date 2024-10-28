@@ -2,7 +2,7 @@
 /*
 Plugin Name: BB Custom Login
 Description: Un plugin pour personnaliser la page de connexion de WordPress
-Version: 1
+Version: 1.0.1
 Author: Agence BB® Switzerland
 Author URI: https://www.agence-bb.ch
 */
