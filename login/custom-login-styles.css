@@ -400,3 +400,7 @@ body.login section.login-custom-section .section-poles a img {
     flex-direction: column-reverse;
   }
 }
+
+body, html{
+  height: auto !important;
+}
