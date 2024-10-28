@@ -33,12 +33,6 @@ a:hover {
   border-radius: 20px 20px;
 }
 
-.login h1 a {
-  background-image: url('/wp-content/themes/agence-bb/login/img/logo_bb.png');
-  background-size: 150px;
-  height: 170px;
-  width: auto;
-}
 
 
 .login label {

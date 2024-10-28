@@ -90,7 +90,7 @@ function custom_login_css()
         :root {
             --primary-color-login: ' . esc_attr($primary_color) . ';
         }
-        .login h1.logo-client a{
+        #login h1 a{
             background-image: url(' . esc_url($client_logo) . ') !important;
             background-size: contain !important;
             height: 170px !important;
