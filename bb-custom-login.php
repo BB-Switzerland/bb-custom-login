@@ -80,7 +80,7 @@ add_header_login();
 function custom_login_css()
 {
     $client_logo = get_option('bb_custom_login_logo');
-    if(!$client_logo){
+    if (!$client_logo) {
         $client_logo = plugin_dir_url(__FILE__) . 'login/img/default-client-logo.svg';
     }
 
@@ -102,6 +102,9 @@ function custom_login_css()
             background-size: 150px !important;
             height: 170px !important;
             width: 30% !important;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent;
         }
         .login h1.logo-agence{
             display: flex;
@@ -156,11 +159,14 @@ function bb_custom_login_settings_page()
                 <tr valign="top">
                     <th scope="row">Logo du client</th>
                     <td>
-                        <input type="text" id="bb_custom_login_logo" name="bb_custom_login_logo" value="<?php echo esc_attr(get_option('bb_custom_login_logo')); ?>" style="width:60%;" />
+                        <input type="text" id="bb_custom_login_logo" name="bb_custom_login_logo"
+                            value="<?php echo esc_attr(get_option('bb_custom_login_logo')); ?>" style="width:60%;" />
                         <input type="button" id="bb_custom_login_logo_button" class="button" value="Téléverser le logo" />
-                        <p class="description">Téléversez ou sélectionnez le logo du client à afficher sur la page de connexion.</p>
-                        <?php if(get_option('bb_custom_login_logo')): ?>
-                            <img src="<?php echo esc_url(get_option('bb_custom_login_logo')); ?>" style="max-width: 200px; display: block; margin-top: 10px;" />
+                        <p class="description">Téléversez ou sélectionnez le logo du client à afficher sur la page de
+                            connexion.</p>
+                        <?php if (get_option('bb_custom_login_logo')): ?>
+                            <img src="<?php echo esc_url(get_option('bb_custom_login_logo')); ?>"
+                                style="max-width: 200px; display: block; margin-top: 10px;" />
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -169,7 +175,9 @@ function bb_custom_login_settings_page()
                 <tr valign="top">
                     <th scope="row">Couleur principale</th>
                     <td>
-                        <input type="text" id="bb_custom_login_primary_color" name="bb_custom_login_primary_color" value="<?php echo esc_attr(get_option('bb_custom_login_primary_color', '#01104f')); ?>" class="my-color-field" data-default-color="#01104f" />
+                        <input type="text" id="bb_custom_login_primary_color" name="bb_custom_login_primary_color"
+                            value="<?php echo esc_attr(get_option('bb_custom_login_primary_color', '#01104f')); ?>"
+                            class="my-color-field" data-default-color="#01104f" />
                         <p class="description">Sélectionnez la couleur principale à utiliser sur la page de connexion.</p>
                     </td>
                 </tr>
@@ -180,41 +188,43 @@ function bb_custom_login_settings_page()
     </div>
 
     <script>
-    jQuery(document).ready(function($){
-        // Pour le champ du logo du client
-        var mediaUploader;
-        $('#bb_custom_login_logo_button').click(function(e) {
-            e.preventDefault();
-            if (mediaUploader) {
+        jQuery(document).ready(function ($) {
+            // Pour le champ du logo du client
+            var mediaUploader;
+            $('#bb_custom_login_logo_button').click(function (e) {
+                e.preventDefault();
+                if (mediaUploader) {
+                    mediaUploader.open();
+                    return;
+                }
+                mediaUploader = wp.media({
+                    title: 'Choisir le logo',
+                    button: {
+                        text: 'Choisir le logo'
+                    }, multiple: false
+                });
+                mediaUploader.on('select', function () {
+                    var attachment = mediaUploader.state().get('selection').first().toJSON();
+                    $('#bb_custom_login_logo').val(attachment.url);
+                });
                 mediaUploader.open();
-                return;
-            }
-            mediaUploader = wp.media({
-                title: 'Choisir le logo',
-                button: {
-                    text: 'Choisir le logo'
-                }, multiple: false });
-            mediaUploader.on('select', function() {
-                var attachment = mediaUploader.state().get('selection').first().toJSON();
-                $('#bb_custom_login_logo').val(attachment.url);
             });
-            mediaUploader.open();
-        });
 
-        // Pour le champ de sélection de couleur
-        $('.my-color-field').wpColorPicker();
-    });
+            // Pour le champ de sélection de couleur
+            $('.my-color-field').wpColorPicker();
+        });
     </script>
     <?php
 }
 
 // Enqueue des scripts de la médiathèque WordPress et du sélecteur de couleur sur la page de paramètres du plugin
-function bb_custom_login_enqueue_media_uploader($hook) {
-    if( $hook != 'settings_page_bb-custom-login' ) {
+function bb_custom_login_enqueue_media_uploader($hook)
+{
+    if ($hook != 'settings_page_bb-custom-login') {
         return;
     }
     wp_enqueue_media();
-    wp_enqueue_style( 'wp-color-picker' );
-    wp_enqueue_script( 'wp-color-picker' );
+    wp_enqueue_style('wp-color-picker');
+    wp_enqueue_script('wp-color-picker');
 }
 add_action('admin_enqueue_scripts', 'bb_custom_login_enqueue_media_uploader');
