@@ -78,6 +78,14 @@ a:hover {
   color: transparent;
 }
 
+#login .wp-login-logo{
+  max-width: 300px;
+}
+
+#login .wp-login-logo a{
+  background-position: center;
+}
+
 a:focus {
   color: transparent;
   box-shadow: none;
